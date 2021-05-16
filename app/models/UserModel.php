@@ -13,14 +13,13 @@ class UserModel {
 
     public function getAll() {
         $sql = "SELECT * FROM $this->table";
-        $stmt = Database::getInstance()->Query( $sql );
-        // $result = $stmt->fetch();
-        // print_r($result);
+        $stmt = Database::getInstance()->query( $sql );
+        $result = $stmt->fetchAll();
 
-        // if ( !empty( $result ) ) {
-        //     return $result;
-        // }
+        if ( !empty( $result ) ) {
+            return $result;
+        }
 
-        // return null;
+        return null;
     }
 }

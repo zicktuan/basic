@@ -27,9 +27,10 @@ class Database {
         $this->userName  = DB_USER;
         $this->pass      = DB_PASS;
         $this->dbName    = DB_NAME;
+        $this->connect();
     }
 
-    public function connect() {
+    private function connect() {
         try {
             $this->conn = new PDO( "mysql:host=$this->host;dbname=$this->dbName", $this->userName, $this->pass );
         } catch ( PDOException $e ) {
@@ -37,18 +38,14 @@ class Database {
         }
     }
 
-    public function Query( $sql, $param = [] ) {
-        // print_r($sql);
-        // if ( !empty( $param ) ) {
-        //     $stmt = $this->conn->prepare( $sql );
-        //     $stmt->execute( $param );
+    public function query( $sql, $param = [] ) {
+        if ( !empty( $param ) ) {
+            $stmt = $this->conn->prepare( $sql );
+            $stmt->execute( $param );
 
-        //     return $stmt;
-        // }
+            return $stmt;
+        }
 
-        $user = $this->conn->query( $sql );
-        print_r($user);
-
-        // return $this->conn->query( $sql );
+        return $this->conn->query( $sql );
     }
 }

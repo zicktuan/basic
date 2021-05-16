@@ -1,20 +1,10 @@
 <?php
 
-// include 'database/Database.php';
-
-// Database::getInstance()->connect();
-
-// $sql = "SELECT * FROM users";
-
-// $stmt = Database::getInstance()->query( $sql );
-// $users = $stmt->fetch();
-
 include 'app/controllers/UserController.php';
 
 $userController = new UserController();
 
 $users = $userController->index();
-print_r($users);
 
 ?>
 
@@ -34,22 +24,22 @@ print_r($users);
                 <thead>
                     <tr>
                     <th scope="col">#</th>
-                    <th scope="col">First</th>
-                    <th scope="col">Last</th>
-                    <th scope="col">Handle</th>
+                    <th scope="col">Username</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Status</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <?php //if( !empty( $users ) ): ?>
-                        <?php //foreach( $users as $user ): ?>
+                    <?php if( !empty( $users ) ): ?>
+                        <?php $i = 0; foreach( $users as $user ): $i++ ?>
                             <tr>
-                                <th scope="row">1</th>
-                                <td>Mark</td>
-                                <td>Otto</td>
-                                <td>@mdo</td>
+                                <th scope="row"><?php echo $i ?></th>
+                                <td><?php echo !empty( $user['username'] ) ? $user['username'] : '' ?></td>
+                                <td><?php echo !empty( $user['email'] ) ? $user['email'] : '' ?></td>
+                                <td><?php echo ( $user['status'] === 1 ) ? 'Active' : 'Block' ?></td>
                             </tr>
-                        <?php //endforeach ?>
-                    <?php //endif ?>
+                        <?php endforeach ?>
+                    <?php endif ?>
                 </tbody>
             </table>
         </div>
