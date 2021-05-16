@@ -8,7 +8,7 @@ class Database {
     private $userName;
     private $pass;
     private $dbName;
-    protected $conn;
+    public $conn;
 
     private static $getInstance = null;
 
@@ -35,5 +35,20 @@ class Database {
         } catch ( PDOException $e ) {
             echo "Connection failed: " . $e->getMessage();
         }
+    }
+
+    public function Query( $sql, $param = [] ) {
+        // print_r($sql);
+        // if ( !empty( $param ) ) {
+        //     $stmt = $this->conn->prepare( $sql );
+        //     $stmt->execute( $param );
+
+        //     return $stmt;
+        // }
+
+        $user = $this->conn->query( $sql );
+        print_r($user);
+
+        // return $this->conn->query( $sql );
     }
 }
