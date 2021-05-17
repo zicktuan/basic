@@ -1,3 +1,2 @@
 <?php
-
-echo 'home page';
+echo "Home frontend";
