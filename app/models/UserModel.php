@@ -1,6 +1,6 @@
 <?php
 
-include 'database/Database.php';
+include '/Applications/MAMP/htdocs/basic/database/Database.php';
 
 class UserModel {
 

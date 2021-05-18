@@ -14,7 +14,7 @@
 
     <!-- Nav Item - Dashboard -->
     <li class="nav-item active">
-        <a class="nav-link" href="index.html">
+        <a class="nav-link" href="index.php">
             <i class="fas fa-fw fa-tachometer-alt"></i>
             <span>Dashboard</span>
         </a>
@@ -37,9 +37,8 @@
         </a>
         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo">
             <div class="bg-white py-2 collapse-inner rounded">
-                <a class="collapse-item" href="index.php?page=list-user">List user</a>
-                <a class="collapse-item" href="index.php?page=add-user">Add user</a>
-                <a class="collapse-item" href="index.php?page=update-user">Update user</a>
+                <a class="collapse-item" href="index.php?controller=admin-user&action=index">List user</a>
+                <a class="collapse-item" href="index.php?controller=admin-user&action=create">Add user</a>
             </div>
         </div>
     </li>

@@ -13,19 +13,11 @@
         <div class="container-fluid">
 
             <?php
-                // Master page
-                if ( isset( $_GET['page'] ) ) {
-                    switch ( $_GET['page'] ) {
-                        case 'list-user':
-                            include_once 'users/index.php';
+                if ( isset( $_GET['controller'] ) ) {
+                    switch ( $_GET['controller'] ) {
+                        case 'admin-user':
+                            include '../../app/controllers/Backend/UserController.php';
                             break;
-                        case 'add-user':
-                            include_once 'users/add.php';
-                            break;
-                        case 'update-user':
-                            include_once 'users/update.php';
-                            break;
-
                     }
                 }
             ?>
@@ -34,9 +26,6 @@
         <!-- /.container-fluid -->
 
     </div>
-
+    <?php include 'inc/footer.php' ?>
 </div>
 <!-- End of Main Content -->
-</div>
-
-<?php include 'inc/footer.php' ?>

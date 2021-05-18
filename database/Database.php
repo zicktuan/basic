@@ -1,6 +1,6 @@
 <?php
 
-include 'config/config.php';
+include '/Applications/MAMP/htdocs/basic/config/config.php';
 
 class Database {
 
