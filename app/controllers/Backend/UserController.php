@@ -8,6 +8,8 @@ class UserController {
 
     private $userModel;
 
+    private $table = 'users';
+
     public function __construct()
     {
         $this->userModel = new UserModel();
@@ -16,15 +18,55 @@ class UserController {
 
     public function index() {
         $data = $this->userModel->getAll();
-        include '/Applications/MAMP/htdocs/basic/views/admin/users/index.php';
+        $rootDir = '/Applications/MAMP/htdocs/basic';
+        include $rootDir . '/views/admin/users/index.php';
+        // include '/Applications/MAMP/htdocs/basic/views/admin/users/index.php';
     }
 
     public function create() {
         include '/Applications/MAMP/htdocs/basic/views/admin/users/add.php';
     }
 
-    public function store( $id ) {
+    public function store() {
+        $errors = [];
+        if ( isset($_POST['btn-submit-user'] )) {
+            $username = !empty( $_POST['username'] ) ? filter_var( trim( $_POST['username'] ), FILTER_SANITIZE_STRING ) : $errors['username'] = 'Username không được để trống!';
+            $email    = !empty( $_POST['email'] ) ? filter_var( trim( $_POST['email'] ), FILTER_SANITIZE_EMAIL ) : $errors['email'] = 'Email không được để trống!';
+            $password = !empty( $_POST['password'] ) ? md5( trim( $_POST['password'] ) ) : $errors['password'] = 'Password không được để trống!';
+            $rePass   = !empty( $_POST['re-password'] ) ? md5( trim( $_POST['re-password'] ) ) : $errors['rePass'] = 'Comfirm password không được để trống';
+            $status   = $_POST['status'];
+            $level    = $_POST['level'];
 
+            $sql = "SELECT * FROM $this->table WHERE username=?";
+            $sql = "SELECT * FROM $this->table WHERE email=?";
+
+            $checkUsername = $this->userModel->getBy( $sql, [$username] );
+            $checkEmail    = $this->userModel->getBy( $sql, [$email] );
+
+            if( 1 == $checkUsername ) {
+                $errors['checkUsername'] = 'Username already exists.';
+            } elseif ( 1 == $checkEmail ) {
+                $errors['checkEmail'] = 'Email already exists.';
+            }
+            
+            if ( $password !== $rePass ) {
+                $errors['checkPass'] = "Password doesn't not match.";
+            }
+
+            $data = [
+                'username' => $username,
+                'password' => $password,
+                'email'    => $email,
+                'status'   => $status,
+                'level'    => $level,
+                'created_time' => time()
+            ];
+
+            if ( empty( $errors ) ) {
+                $sql = "INSERT INTO users ( username, password, email, status, level, created_time ) VALUES ( :username, :password, :email, :status, :level, :created_time )";
+                $this->userModel->add( $sql, $data );
+            }
+        }
     }
 
     public function update( $id ) {
@@ -48,7 +90,7 @@ class UserController {
                 $this->create();
                 break;
             case 'store':
-                $this->create();
+                $this->store();
                 break;
             case 'update':
                 $this->create();

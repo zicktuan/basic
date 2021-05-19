@@ -5,42 +5,43 @@
 
 
     <div class="col-6">
-        <form action="" method="post">
+        <form action="index.php?controller=admin-user&action=store" method="post">
             <div class="mb-3">
                 <label class="form-label">Username</label>
-                <input type="text" class="form-control required">
-                <div class="form-text">We'll never share your email with anyone else.</div>
+                <input type="text" name="username" class="form-control required">
+                <div class="form-text"><?php echo !empty( $errors['username'] ) ? $errors['username'] : '' ?></div>
             </div>
             <div class="mb-3">
                 <label class="form-label">Email address</label>
-                <input type="email" class="form-control">
+                <input type="email" name="email" class="form-control">
                 <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
             </div>
             <div class="mb-3">
                 <label class="form-label">Password</label>
-                <input type="password" class="form-control">
+                <input type="password" name="password" class="form-control">
             </div>
             <div class="mb-3">
                 <label class="form-label">Comfirm password</label>
-                <input type="password" class="form-control">
+                <input type="password" name="re-password" class="form-control">
             </div>
             <div class="mb-3">
                 <label class="form-label">Status</label>
-                <select class="form-select form-control">
+                <select class="form-select form-control" name="status">
                     <option value="0">Block</option>
                     <option value="1">Active</option>
                 </select>
             </div>
             <div class="mb-3">
                 <label class="form-label">Level</label>
-                <select class="form-select form-control">
-                    <option selected>Open this select menu</option>
-                    <option value="1">One</option>
-                    <option value="2">Two</option>
-                    <option value="3">Three</option>
+                <select class="form-select form-control" name="level">
+                    <option value="0">Administrator</option>
+                    <option value="1">Subscriber</option>
+                    <option value="2">Author</option>
+                    <option value="3">Editor</option>
+                    <option value="4">Contributor</option>
                 </select>
             </div>
-            <button type="submit" class="btn btn-primary">Add</button>
+            <button type="submit" name="btn-submit-user" class="btn btn-primary">Add</button>
         </form>
     </div>
     

@@ -1,7 +1,7 @@
  <!-- Page Heading -->
  <div class="d-sm-flex align-items-center justify-content-between mb-4">
     <h1 class="h3 mb-0 text-gray-800">Manage User</h1>
-    <a href="index.php?page=add-user" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
+    <a href="index.php?controller=admin-user&action=create" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
         Add user
     </a>
 </div>
