@@ -37,7 +37,9 @@ class UserModel {
     public function add( $sql, $data ) {
         $stmt = Database::getInstance()->query( $sql, $data );
         if ( $stmt ) {
-            echo 1;
+            return 1;
+        } else {
+            return 0;
         }
     }
 }

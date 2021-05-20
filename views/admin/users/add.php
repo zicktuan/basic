@@ -3,26 +3,32 @@
         <h1 class="h3 mb-0 text-gray-800">Add User</h1>
     </div>
 
+    <?php echo isset( $errors['checkUsername'] ) ? '<div class="alert alert-danger" role="alert">'.$errors['checkUsername'].'</div>' : '' ?>
+    <?php echo isset( $errors['checkEmail'] ) ? '<div class="alert alert-danger" role="alert">'.$errors['checkEmail'].'</div>' : '' ?>
+    <?php echo isset( $errors['checkPass'] ) ? '<div class="alert alert-danger" role="alert">'.$errors['checkPass'].'</div>' : '' ?>
+
 
     <div class="col-6">
         <form action="index.php?controller=admin-user&action=store" method="post">
             <div class="mb-3">
                 <label class="form-label">Username</label>
                 <input type="text" name="username" class="form-control required">
-                <div class="form-text"><?php echo !empty( $errors['username'] ) ? $errors['username'] : '' ?></div>
+                <div class="form-text" style="color: red;"><?php echo isset( $errors['username'] ) ? $errors['username'] : '' ?></div>
             </div>
             <div class="mb-3">
                 <label class="form-label">Email address</label>
                 <input type="email" name="email" class="form-control">
-                <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+                <div class="form-text" style="color: red;"><?php echo isset( $errors['email'] ) ? $errors['email'] : '' ?></div>
             </div>
             <div class="mb-3">
                 <label class="form-label">Password</label>
                 <input type="password" name="password" class="form-control">
+                <div class="form-text" style="color: red;"><?php echo isset( $errors['password'] ) ? $errors['password'] : '' ?></div>
             </div>
             <div class="mb-3">
                 <label class="form-label">Comfirm password</label>
                 <input type="password" name="re-password" class="form-control">
+                <div class="form-text" style="color: red;"><?php echo isset( $errors['rePass'] ) ? $errors['rePass'] : '' ?></div>
             </div>
             <div class="mb-3">
                 <label class="form-label">Status</label>

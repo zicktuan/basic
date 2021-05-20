@@ -5,6 +5,11 @@
         Add user
     </a>
 </div>
+<!-- <?php if( isset( $msg ) ): ?>
+    <div class="alert alert-success" role="alert">
+    <?php echo $msg ?>
+    </div>
+<?php endif ?> -->
 
 <div class="card shadow mb-4">
     <div class="card-header py-3">

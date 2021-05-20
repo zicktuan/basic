@@ -63,8 +63,16 @@ class UserController {
             ];
 
             if ( empty( $errors ) ) {
-                $sql = "INSERT INTO users ( username, password, email, status, level, created_time ) VALUES ( :username, :password, :email, :status, :level, :created_time )";
-                $this->userModel->add( $sql, $data );
+                $sql  = "INSERT INTO users ( username, password, email, status, level, created_time ) VALUES ( :username, :password, :email, :status, :level, :created_time )";
+                $user = $this->userModel->add( $sql, $data );
+                if ( 1 == $user ) {
+                    $msg = 'User added successfully';
+                    header( "Location: index.php?controller=admin-user&action=create");
+                    // include '/Applications/MAMP/htdocs/basic/views/admin/users/add.php';
+                }
+            } else {
+                // header( "Location: index.php?controller=admin-user&action=create");
+                include '/Applications/MAMP/htdocs/basic/views/admin/users/add.php';
             }
         }
     }
