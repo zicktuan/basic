@@ -1,8 +1,7 @@
 <?php
 
-class ProductModel extends BaseModel {
-
-    //ex users
+class UserModel extends BaseModel {
+    
     const TABLE = 'users';
 
     public function __construct()

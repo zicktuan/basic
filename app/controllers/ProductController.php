@@ -29,7 +29,7 @@ class ProductController extends BaseController {
 
         $product = $this->productModel->getById( $id );
 
-        print_r($product);
+        return $this->view( 'admin.product.detail', [ 'product' => $product ] );
     }
 
     public function store() {
@@ -43,5 +43,24 @@ class ProductController extends BaseController {
         ];
 
         $this->productModel->store( $data );
+    }
+
+    public function update() {
+        $id = $_GET['id'];
+        $data = [
+            'username' => 'super-admin',
+            'password' => md5('123456'),
+            'email' => 'superadmin@gmail.com',
+            'status' => 1,
+            'level' => 0,
+            'created_time' => time()
+        ];
+        $this->productModel->update( $id, $data );
+    }
+
+    public function delete() {
+        $id = $_GET['id'];
+
+        $this->productModel->delete( $id );
     }
 }

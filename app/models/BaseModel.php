@@ -68,7 +68,19 @@ class BaseModel extends Database {
      * Update data by Id
      * $id integer
      */
-    public function update( $id ) {
+    public function updateData( $table, $id, $data = [] ) {
+
+        foreach ( $data as $key => $value ) {
+            $items[] = $key .'=:' . $key;
+        }
+
+        $columns = implode( ', ', $items );
+
+        $sql = "UPDATE ${table} SET ${columns} WHERE id=:id";
+
+        $data['id'] = $id;
+
+        $this->_query( $sql, $data );
 
     }
 
@@ -76,8 +88,10 @@ class BaseModel extends Database {
      * Delete data by id
      * $id integer
      */
-    public function delete( $id ) {
-        
+    public function destroy( $table, $id ) {
+        $data = ['id' => $id];
+        $sql = "DELETE FROM ${table} WHERE id=:id";
+        $this->_query( $sql, $data );
     }
 
     private function _query( $sql, $data = [] ) {
